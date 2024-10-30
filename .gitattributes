@@ -1,0 +1,3 @@
+src/assets/fonts/*.css -whitespace
+src/assets/fonts/*.html -whitespace
+src/assets/fonts/*.svg -whitespace
