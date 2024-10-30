@@ -253,7 +253,7 @@ export default {
         addUser () {
             this.$refs.userForm.validate((valid) => {
                 if (valid) {
-                    this.$axios.post('users', this.userForm).then((res) => {
+                    this.$axios.post('/users', this.userForm).then((res) => {
                         var data = res.data;
                         if (data.meta && data.meta.status === 201) {
                             this.$message.success(data.meta.msg);

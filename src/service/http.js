@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import axios from 'axios'
 import router from '../router'
-axios.defaults.baseURL = 'http://127.0.0.1:8811/api/v1'
-// axios.defaults.baseURL='http://192.168.31.171:8888/api/private/v1/';
 
+axios.defaults.baseURL =  process.env.NODE_ENV === 'production' ? '/v1' : '/api/v1'
+// axios.defaults.headers = {
+//   'Content-Type': 'application/json'
+// }
+console.log(process.env.NODE_ENV)
 // axios请求拦截器
 axios.interceptors.request.use(config => {
   const token = sessionStorage.getItem('token')
