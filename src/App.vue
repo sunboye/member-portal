@@ -13,7 +13,9 @@ export default {
   components: {
     Home
   },
-  created() {}
+  created() {
+    // document.title = 'title测试'; // title已在vue.config.js 配置
+  }
 }
 </script>
 
