@@ -12,7 +12,7 @@
           <el-table :data="tableData" stripe border style="width: 550px" tooltip-effect="light" v-loading="isLoading">
             <el-table-column width="45px">
               <template slot-scope="props">
-                <el-radio v-model="radio" :label="props.row.id" @change.native="getCurrentRow(props.row)">&nbsp;</el-radio>
+                <el-radio v-model="radio" class="table-radio" :label="props.row.id" @change.native="getCurrentRow(props.row)"></el-radio>
               </template>
             </el-table-column>
             <el-table-column label="姓名" width="124px" show-overflow-tooltip>
