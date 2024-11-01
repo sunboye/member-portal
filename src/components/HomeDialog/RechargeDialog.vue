@@ -12,7 +12,7 @@
           <el-table :data="tableData" stripe border style="width: 550px" tooltip-effect="light" v-loading="isLoading">
             <el-table-column width="45px">
               <template slot-scope="props">
-                <el-radio v-model="radio" :label="props.row.id" @change.native="getCurrentRow(props.row)">{{&nbsp;}}</el-radio>
+                <el-radio v-model="radio" :label="props.row.id" @change.native="getCurrentRow(props.row)">&nbsp;</el-radio>
               </template>
             </el-table-column>
             <el-table-column label="姓名" width="124px" show-overflow-tooltip>
@@ -199,8 +199,8 @@ export default {
             const dataTemp = res.data && res.data.records && res.data.records.length ? res.data.records : [];
             this.pagination.total = res.data.total;
             this.radio = dataTemp.length ? dataTemp[0].id : null
-            this.getCurrentRow(dataTemp[0])
             this.tableData = dataTemp;
+            this.getCurrentRow(dataTemp[0])
           }
       }).finally(() => {
         this.isLoading = false;
@@ -209,13 +209,15 @@ export default {
     getCurrentRow (row) {
       console.log(row)
       // && row.status === 1
-      if (row && Object.keys(row).length > 0) {
-        this.radioData = cloneDeep(row);
-        this.consumpForm.username = this.radioData.name;
-        this.consumpForm.balance = parseFloat(parseFloat(this.radioData.balance).toFixed(2));
-        this.consumpChange();
-      } else {
-        this.$confirm('用户数据异常，请检查用户数据!');
+      if (this.tableData && this.tableData.length) {
+        if (row && Object.keys(row).length > 0) {
+          this.radioData = cloneDeep(row);
+          this.consumpForm.username = this.radioData.name;
+          this.consumpForm.balance = parseFloat(parseFloat(this.radioData.balance).toFixed(2));
+          this.consumpChange();
+        } else {
+          this.$confirm('用户数据异常，请检查用户数据!');
+        }
       }
     },
     consumpChange () {
